@@ -4,232 +4,288 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SENİN YILDIZIN KİM?</title>
-
-  <!-- Google Fonts (okunur + zarif) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      --bg: #F7F5F1;         /* krem/fildişi */
-      --card: #FFFFFF;       /* kart zemini */
-      --ink: #2E2E2E;        /* ana metin */
-      --muted: #6F6F6F;      /* ikincil metin */
-      --line: rgba(46,46,46,.10);
-      --mint: #9DBFB8;       /* mint vurgu */
-      --mint-soft: rgba(157,191,184,.14);
-      --shadow: 0 14px 35px rgba(20, 20, 20, 0.08);
-      --radius: 18px;
+      --cream:#fdf6ec;
+      --mint-1:#a7f3d0;
+      --mint-2:#6ee7b7;
+      --mint-dark:#065f46;
+      --ink:#1f2937;
+      --card:#ffffffee;
+      --card-solid:#ffffff;
+      --shadow: 0 10px 25px rgba(0,0,0,.08);
+      --border: 1px solid rgba(6,95,70,0.12);
+      --ring: 0 0 0 3px rgba(110,231,183,.35);
+      --muted: rgba(31,41,55,.78);
     }
 
-    *{ box-sizing: border-box; }
+    *{box-sizing:border-box}
     body{
       margin:0;
-      min-height:100vh;
-      background: radial-gradient(900px 500px at 15% 10%, rgba(157,191,184,.12), transparent 60%),
-                  radial-gradient(900px 500px at 85% 90%, rgba(157,191,184,.10), transparent 60%),
-                  var(--bg);
+      font-family: "Georgia", serif;
       color: var(--ink);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(167,243,208,0.22) 0%, transparent 42%),
+        radial-gradient(circle at 80% 80%, rgba(110,231,183,0.18) 0%, transparent 45%),
+        radial-gradient(circle at 70% 20%, rgba(167,243,208,0.12) 0%, transparent 40%);
+      min-height: 100vh;
     }
 
     .wrap{
-      width: min(920px, 92vw);
+      max-width: 920px;
       margin: 0 auto;
-      padding: 28px 0 46px;
+      padding: 22px 16px 30px;
     }
 
-    /* Header */
     header{
       text-align:center;
-      padding: 10px 0 18px;
-    }
-    .title{
-      margin: 10px 0 10px;
-      font-family: "Playfair Display", Georgia, serif;
-      font-weight: 600;
-      letter-spacing: .04em;
-      font-size: clamp(28px, 4.2vw, 44px);
-      text-transform: uppercase;
-    }
-    .subtitle{
-      margin: 0 auto;
-      width: min(720px, 92vw);
-      color: var(--muted);
-      font-size: 14.5px;
-      line-height: 1.75;
+      padding: 10px  0 6px;
     }
 
-    /* Card shell */
-    .shell{
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(46,46,46,.08);
-      border-radius: calc(var(--radius) + 6px);
-      padding: 14px;
-      box-shadow: 0 12px 28px rgba(20,20,20,.06);
-      backdrop-filter: blur(8px);
+    h1{
+      margin: 8px 0 8px;
+      color: var(--mint-dark);
+      font-weight: 700;
+      letter-spacing: .8px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+    h1:after{
+      content:"";
+      display:block;
+      width: 170px;
+      height: 3px;
+      background: linear-gradient(to right, var(--mint-1), var(--mint-2));
+      margin: 10px auto 0;
+      border-radius: 999px;
+    }
+
+    .subtitle{
+      margin: 6px auto 14px;
+      max-width: 760px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(31,41,55,.82);
     }
 
     .card{
       background: var(--card);
-      border: 1px solid rgba(46,46,46,.08);
-      border-radius: var(--radius);
+      border: var(--border);
       box-shadow: var(--shadow);
-      padding: 22px;
+      border-radius: 18px;
+      padding: 18px;
+      overflow:hidden;
+      backdrop-filter: blur(6px);
     }
 
-    /* Progress bar */
-    .meta{
+    .topbar{
       display:flex;
+      gap: 12px;
       align-items:center;
       justify-content:space-between;
-      gap: 14px;
-      margin-bottom: 16px;
+      margin: 2px 0 14px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,.7);
+      border: var(--border);
+      border-radius: 14px;
     }
-    .counter{
-      color: var(--muted);
+
+    .qmeta{
       font-size: 13px;
-      letter-spacing: .02em;
+      color: rgba(31,41,55,.78);
+      display:flex;
+      align-items:center;
+      gap: 10px;
       white-space: nowrap;
     }
+
     .bar{
       flex: 1;
       height: 10px;
+      background: rgba(6,95,70,.08);
       border-radius: 999px;
-      background: rgba(46,46,46,.08);
       overflow: hidden;
-      border: 1px solid rgba(46,46,46,.06);
+      border: 1px solid rgba(6,95,70,.08);
     }
     .bar > div{
       height: 100%;
-      width: 30%;
+      width: 0%;
+      background: linear-gradient(to right, var(--mint-1), var(--mint-2));
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(157,191,184,.85), rgba(157,191,184,1));
       transition: width .35s ease;
     }
 
-    /* Question */
-    .q{
-      margin: 6px 0 18px;
-      font-size: 18px;
-      line-height: 1.75;
-      letter-spacing: .01em;
+    .question{
+      margin: 10px 0 14px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(17,24,39,.95);
     }
 
-    /* Answer "choice cards" */
-    .choices{
+    .options{
       display:flex;
-      flex-direction:column;
-      gap: 12px;
-      margin-top: 10px;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0 8px;
     }
 
-    .choice{
-      width:100%;
-      text-align:left;
-      background: #fff;
-      border: 1px solid rgba(46,46,46,.12);
-      border-radius: 14px;
-      padding: 14px 14px;
-      cursor: pointer;
-      transition: transform .14s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
-      box-shadow: 0 8px 18px rgba(20,20,20,.05);
+    .opt{
       display:flex;
       gap: 12px;
       align-items:flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(31,41,55,.10);
+      background: rgba(255,255,255,.75);
+      cursor:pointer;
+      transition: transform .08s ease, box-shadow .08s ease, border-color .15s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .opt:hover{ transform: translateY(-1px); }
+    .opt:active{ transform: translateY(0px) scale(0.995); }
+    .opt.selected{
+      border-color: rgba(6,95,70,.35);
+      box-shadow: var(--ring);
+      background: rgba(255,255,255,.92);
     }
 
-    .choice:hover{
-      background: var(--mint-soft);
-      border-color: rgba(157,191,184,.85);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(20,20,20,.07);
-    }
-
-    .bullet{
-      width: 30px;
-      height: 30px;
+    .badge{
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
-      border: 1px solid rgba(46,46,46,.18);
-      display:grid;
-      place-items:center;
-      font-weight: 600;
-      color: rgba(46,46,46,.85);
-      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border: 1px solid rgba(6,95,70,.22);
+      color: var(--mint-dark);
+      font-weight: 700;
+      flex: none;
       margin-top: 1px;
+      background: rgba(167,243,208,.18);
     }
 
-    .choice p{
-      margin: 0;
-      font-size: 15.5px;
-      line-height: 1.7;
-      color: rgba(46,46,46,.92);
+    .optText{
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: rgba(17,24,39,.92);
     }
 
-    /* Footer note */
-    .note{
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(46,46,46,.08);
-      color: rgba(111,111,111,.95);
-      font-size: 12.8px;
-      line-height: 1.7;
+    .footerRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(6,95,70,.18);
     }
 
-    /* Result card */
-    .resultTag{
-      display:inline-block;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(157,191,184,.75);
-      background: var(--mint-soft);
-      color: rgba(46,46,46,.9);
+    .hint{
       font-size: 12.5px;
-      letter-spacing: .03em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+      color: rgba(31,41,55,.70);
+      line-height: 1.5;
+      max-width: 560px;
+    }
+
+    .btn{
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: linear-gradient(to right, var(--mint-1), var(--mint-2));
+      color: rgba(6,95,70,1);
+      font-weight: 700;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(6,95,70,.10);
+      transition: transform .08s ease, opacity .15s ease;
+      min-width: 140px;
+    }
+    .btn:disabled{
+      opacity: .55;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .btn:active{ transform: scale(.99); }
+
+    /* Result */
+    .resultTitle{
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--mint-dark);
+      margin: 0 0 10px;
     }
     .resultName{
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(22px, 3.4vw, 30px);
-      margin: 4px 0 12px;
-      letter-spacing: .02em;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      margin: 0 0 10px;
+      color: rgba(17,24,39,.96);
     }
-    .resultText{
-      color: rgba(46,46,46,.88);
-      font-size: 15.5px;
+    .resultBody{
+      font-size: 15.2px;
       line-height: 1.85;
+      color: rgba(17,24,39,.90);
+      white-space: pre-line;
     }
 
-    /* Minimal buttons (optional) */
+    .mini{
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(31,41,55,.08);
+    }
+    .mini h3{
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: rgba(31,41,55,.86);
+    }
+    .rank{
+      display:grid;
+      gap: 8px;
+    }
+    .rankItem{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      font-size: 13.5px;
+      color: rgba(31,41,55,.86);
+    }
+    .pill{
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(6,95,70,.18);
+      background: rgba(167,243,208,.16);
+      color: rgba(6,95,70,1);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
     .actions{
       display:flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap: wrap;
+      gap:10px;
+      justify-content:flex-end;
+      margin-top: 14px;
     }
-    .btn{
-      border: 1px solid rgba(46,46,46,.14);
-      background: #fff;
-      color: rgba(46,46,46,.92);
-      padding: 10px 12px;
-      border-radius: 12px;
+    .btnGhost{
+      border: 1px solid rgba(6,95,70,.22);
+      background: rgba(255,255,255,.75);
+      color: rgba(6,95,70,1);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 700;
       cursor:pointer;
-      transition: background .18s ease, border-color .18s ease, transform .12s ease;
-      font-size: 13.5px;
-    }
-    .btn:hover{
-      background: var(--mint-soft);
-      border-color: rgba(157,191,184,.85);
-      transform: translateY(-1px);
     }
 
-    /* Mobile */
-    @media (max-width: 560px){
-      .card{ padding: 18px; }
-      .q{ font-size: 17px; }
-      .choice p{ font-size: 15px; }
+    @media (max-width:520px){
+      .btn{min-width: 120px}
+      .topbar{flex-direction: column; align-items:flex-start}
+      .bar{width:100%}
+      .hint{max-width: 100%}
     }
   </style>
 </head>
@@ -237,66 +293,690 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="title">SENİN YILDIZIN KİM?</div>
+      <h1>SENİN YILDIZIN KİM?</h1>
       <div class="subtitle">
         Bu test; kriz anındaki reflekslerini, değerlerini ve hayata verdiğin yönü ölçer.
         “Doğru cevap” yoktur; içinden geleni seç.
       </div>
     </header>
 
-    <div class="shell">
-      <div class="card" id="app">
-        <!-- İskelet: örnek soru (görünüm testi için) -->
-        <div class="meta">
-          <div class="counter" id="counter">Soru 1 / 40</div>
-          <div class="bar" aria-label="İlerleme">
-            <div id="progress" style="width: 2.5%"></div>
-          </div>
+    <div class="card" id="card">
+      <div class="topbar">
+        <div class="qmeta"><span id="qCounter">Soru 1 / 40</span></div>
+        <div class="bar" aria-label="İlerleme">
+          <div id="progress"></div>
         </div>
+      </div>
 
-        <div class="q" id="question">
-          Büyük bir kargaşa çıktı. İnsanlar panik hâlinde ve herkes farklı bir şey söylüyor. Sen doğal olarak ne yaparsın?
+      <div class="question" id="questionText">Yükleniyor...</div>
+
+      <div class="options" id="options"></div>
+
+      <div class="footerRow">
+        <div class="hint" id="hint">
+          Not: 31–40. sorular “kilit filtre”dir. Yakın çıkan iki sonuç arasında son noktayı koyar.
         </div>
-
-        <div class="choices">
-          <button class="choice" type="button">
-            <div class="bullet">A</div>
-            <p>Önce insanları sakinleştirir, dağılmamalarını sağlarım.</p>
-          </button>
-
-          <button class="choice" type="button">
-            <div class="bullet">B</div>
-            <p>Yanlışı net şekilde söyler, düzen kurulmasını isterim.</p>
-          </button>
-
-          <button class="choice" type="button">
-            <div class="bullet">C</div>
-            <p>Ortamı izler, meselenin özünü anlamaya çalışırım.</p>
-          </button>
-
-          <button class="choice" type="button">
-            <div class="bullet">D</div>
-            <p>Beklemeden öne çıkar, somut bir hamle yaparım.</p>
-          </button>
-        </div>
-
-        <div class="note">
-          * Not: Bu iskelet sadece tasarım içindir. Bir sonraki adımda tüm soruları ve puanlama sistemini bu yapıya bağlayacağız.
-        </div>
-
-        <!-- Sonuç ekranı örneği (tasarım test için, şimdilik gizli) -->
-        <!--
-        <div class="resultTag">Senin Yıldızın</div>
-        <div class="resultName">Hz. Ali</div>
-        <div class="resultText">
-          Sen, olayların görünen yüzüyle yetinmeyen birisin. Bir mesele ortaya çıktığında hemen karar vermezsin; önce “bu neden böyle oldu?” diye sorarsın...
-        </div>
-        <div class="actions">
-          <button class="btn" type="button">Tekrar Çöz</button>
-        </div>
-        -->
+        <button class="btn" id="nextBtn" disabled>Devam</button>
       </div>
     </div>
   </div>
+
+  <script>
+    // =========================
+    // 1) Sahabe listesi (kilitli)
+    // =========================
+    const SAHABE = [
+      "Hz. Ebû Bekir",
+      "Hz. Ömer",
+      "Hz. Osman",
+      "Hz. Ali",
+      "Cafer bin Ebî Tâlib",
+      "Amr bin Âs",
+      "Hâlid bin Velîd",
+      "Selmân-ı Fârisî",
+      "Ebû Zer el-Gıfârî",
+      "Nuayman bin Amr"
+    ];
+
+    // Skor yapıları
+    const stats = Object.fromEntries(SAHABE.map(n => [n, { score: 0, total: 0, lockScore: 0, lockTotal: 0 }]));
+
+    // =========================
+    // 2) 40 soru – her soru 4 şık / her şık 1 sahabe
+    // 1–30: genel harita
+    // 31–40: kilit filtre (senin son metnindeki mantıkla)
+    // =========================
+    const QUESTIONS = [
+      // 1
+      {
+        q: "Büyük bir kargaşa çıktı. İnsanlar panik hâlinde ve herkes farklı bir şey söylüyor. Sen doğal olarak ne yaparsın?",
+        a: [
+          { t: "Önce insanları sakinleştirir, dağılmamalarını sağlar; moral ve güveni yeniden kurmaya çalışırım.", s: "Hz. Ebû Bekir" },
+          { t: "Yanlışı net şekilde söyler, düzen kurulmasını ister; kimin ne yaptığı ve ne yapacağı belirginleşsin isterim.", s: "Hz. Ömer" },
+          { t: "Ortamı izler, meselenin özünü anlamaya çalışırım; konuşmadan önce hakikatin damarını yakalamak isterim.", s: "Hz. Ali" },
+          { t: "Beklemeden öne çıkar, somut bir hamle yaparım; herkesin tutunacağı bir hareket başlatırım.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 2
+      {
+        q: "Bir toplulukta önemli bir karar alınacak. Herkes bir şey istiyor ama hiçbir yol tam doğru görünmüyor. Sen karar sürecinde hangi tavra daha yakınsın?",
+        a: [
+          { t: "İnsanların kalbi kırılmadan bir ortak yol ararım; kimsenin dışarıda kalmamasına dikkat ederim.", s: "Hz. Ebû Bekir" },
+          { t: "İlke ve adalet terazisini öne koyarım; doğru neyse, sonuçları pahasına onu savunurum.", s: "Hz. Ömer" },
+          { t: "Delilleri ve anlam katmanlarını tartarım; acele etmeyip en isabetli yerden konuşurum.", s: "Hz. Ali" },
+          { t: "Şartları ve fırsatları okurum; hedefe götürecek en akıllı manevrayı tasarlarım.", s: "Amr bin Âs" }
+        ]
+      },
+      // 3
+      {
+        q: "Bir insan hata yaptı ve herkes ona yükleniyor. Senin iç refleksin hangisine daha yakındır?",
+        a: [
+          { t: "Hatasını düzeltmesi için yanında dururum; utandırmadan, güç vererek toparlamasını isterim.", s: "Hz. Ebû Bekir" },
+          { t: "Yanlışın adını koyarım; çünkü yanlış normalleşirse topluluğun tamamı zarar görür.", s: "Hz. Ömer" },
+          { t: "Hatanın kaynağını anlamaya çalışırım; ‘niçin’ kısmı aydınlanmadan ‘nasıl’ düzelteceğimizi bilemeyiz.", s: "Selmân-ı Fârisî" },
+          { t: "Yanlışa karşı sert ve açık bir duruş sergilerim; doğruyu eğip bükmek bana ağır gelir.", s: "Ebû Zer el-Gıfârî" }
+        ]
+      },
+      // 4
+      {
+        q: "Hayatta seni en çok motive eden güç hangisine daha yakındır?",
+        a: [
+          { t: "Sadakat ve vefa: Bağ kurduğum şeyi yarı yolda bırakmamak, omuz vermek.", s: "Hz. Ebû Bekir" },
+          { t: "Adalet ve düzen: Hakkın ayakta kalması, yanlışın yerini bulması.", s: "Hz. Ömer" },
+          { t: "Derinlik ve hakikat: Bir şeyin iç yüzünü bulmak, anlamı korumak.", s: "Hz. Ali" },
+          { t: "Mücadele ve atılım: Zorluk varsa aşmak, ön açmak, yol almak.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 5
+      {
+        q: "Bir proje veya dava yürütüyorsun. İnsanlar yoruldu, motivasyon düştü. Sen nasıl canlandırırsın?",
+        a: [
+          { t: "Tek tek insanlarla ilgilenirim; güveni ve niyeti tazeler, ‘beraberiz’ hissini güçlendiririm.", s: "Hz. Ebû Bekir" },
+          { t: "Hedefi ve disiplini hatırlatırım; gevşekliği bitirir, işi ciddiyete çağırırım.", s: "Hz. Ömer" },
+          { t: "Planı yeniden kurarım; rol dağıtır, sistemi iyileştirir, sürdürülebilir hâle getiririm.", s: "Selmân-ı Fârisî" },
+          { t: "Hızlı bir hamle ile ivme oluştururum; küçük bir zafer bile ruhu ayağa kaldırır.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 6
+      {
+        q: "Bir ortamda herkes ‘güzel görünsün’ diye gerçeği yumuşatıyor. Senin için en zor olan hangisi?",
+        a: [
+          { t: "Kimse kırılmasın diye susmak zor gelir; kalpleri korumak isterim.", s: "Hz. Ebû Bekir" },
+          { t: "Yanlışı görüp sessiz kalmak zor gelir; adaletin hatırı bende ağır basar.", s: "Hz. Ömer" },
+          { t: "Hakikatin bozulduğunu görmek zor gelir; anlamın çürümesi beni rahatsız eder.", s: "Hz. Ali" },
+          { t: "Göstermelik bir tabloya razı olmak zor gelir; sahtecilik midemi bulandırır.", s: "Ebû Zer el-Gıfârî" }
+        ]
+      },
+      // 7
+      {
+        q: "Bir davayı temsil etmen istense, insanlara en çok neyi hissettirmek isterdin?",
+        a: [
+          { t: "Merhamet ve güven: Bu yol insanı incitmez; ayağa kaldırır.", s: "Hz. Ebû Bekir" },
+          { t: "Ciddiyet ve sorumluluk: Bu yol adalet ister; gevşekliğe izin vermez.", s: "Hz. Ömer" },
+          { t: "Zarafet ve fedakârlık: Bu yol bedel ister; ama insanı yükseltir.", s: "Cafer bin Ebî Tâlib" },
+          { t: "Akıl ve strateji: Bu yol, fırsatı okur; doğru hamleyi doğru zamanda yapar.", s: "Amr bin Âs" }
+        ]
+      },
+      // 8
+      {
+        q: "Birinin seni anlamadığını hissettiğinde ilk yaptığın şey genelde nedir?",
+        a: [
+          { t: "Yumuşarım; kalbini almaya çalışırım. Anlaşmak, haklı olmaktan daha kıymetli olabilir.", s: "Hz. Ebû Bekir" },
+          { t: "Netleşirim; sınır çizerim. ‘Bu yanlış’ demeyi geciktirmem.", s: "Hz. Ömer" },
+          { t: "Kendimi geri çeker düşünürüm; meseleyi daha doğru ifade etmenin yolunu ararım.", s: "Hz. Ali" },
+          { t: "Durumu lehime çevirecek bir dil kurarım; iletişimde hamle yapmayı severim.", s: "Amr bin Âs" }
+        ]
+      },
+      // 9
+      {
+        q: "Zorlu bir hedef için ekip kuruyorsun. Senin için ekipte en vazgeçilmez rol hangisi olur?",
+        a: [
+          { t: "İnsanları bir arada tutan, arayı yapan, kalpleri toparlayan kişi.", s: "Hz. Ebû Bekir" },
+          { t: "Disiplini sağlayan, hatayı görüp düzeltmeyi ertelemeyen kişi.", s: "Hz. Ömer" },
+          { t: "Derin analiz yapan, krizde soğukkanlı akıl üreten kişi.", s: "Hz. Ali" },
+          { t: "Sahada harekete geçen, cesaretle işi sürükleyen kişi.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 10
+      {
+        q: "Bir konuda çok iyi bildiğini düşündüğün bir şeyin aslında yanlış olduğunu fark ettin. Ne yaparsın?",
+        a: [
+          { t: "Önce kalbimi toparlarım; hatamın telafisi için alçak gönüllülükle adım atarım.", s: "Hz. Ebû Bekir" },
+          { t: "Hemen düzeltirim; yanlışsa geri adım atmak erdemdir, uzatmam.", s: "Hz. Ömer" },
+          { t: "Nerede yanıldığımı anlamaya çalışırım; bu farkındalık beni derinleştirir.", s: "Selmân-ı Fârisî" },
+          { t: "İşin doğrusu neyse onu savunurum; yanlışta ısrar edenlere karşı yalnız kalmayı göze alırım.", s: "Ebû Zer el-Gıfârî" }
+        ]
+      },
+
+      // 11
+      {
+        q: "Senin için ‘liderlik’ en çok neyi taşır?",
+        a: [
+          { t: "İnsanların yükünü omuzlama ve onları incitmeden yürütme sorumluluğunu.", s: "Hz. Ebû Bekir" },
+          { t: "Adaleti ayakta tutma ve gerektiğinde sert karar alabilme gücünü.", s: "Hz. Ömer" },
+          { t: "İlmi, hikmeti ve hakikati koruyarak yön verebilme derinliğini.", s: "Hz. Ali" },
+          { t: "Sahada öncülük edip yolu açma, engeli yıkma ve hedefe varma kararlılığını.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 12
+      {
+        q: "Bir ortamda ‘gösteriş’ artmış, insanlar ‘görünmek’ için yaşıyor gibi. Sende en çok hangi duygu uyanır?",
+        a: [
+          { t: "Üzülürüm; insanın özüne dönmesini ister, kırmadan hatırlatmaya çalışırım.", s: "Hz. Osman" },
+          { t: "Rahatsız olurum; net konuşurum, gereksiz şatafatı kesmek isterim.", s: "Hz. Ömer" },
+          { t: "Meseleyi anlam yönünden ele alırım; niyetin bozulması beni düşünceye iter.", s: "Hz. Ali" },
+          { t: "Bu sahteciliğe tahammül edemem; açıkça karşı çıkar, bedel ödemeyi göze alırım.", s: "Ebû Zer el-Gıfârî" }
+        ]
+      },
+      // 13
+      {
+        q: "Bazen insan bir yol ayrımına gelir: ‘Doğru’ ile ‘kolay’ arasında. Sen hangisini nasıl seçersin?",
+        a: [
+          { t: "Doğruyu seçerim ama insanları düşürmeden; mümkünse herkesi kaldırarak yürürüm.", s: "Hz. Ebû Bekir" },
+          { t: "Doğruyu seçerim; kolay olan çoğu zaman gevşeklik üretir.", s: "Hz. Ömer" },
+          { t: "Doğruyu seçerim; fakat ‘doğru’nun anlamını iyice tartmadan adım atmam.", s: "Hz. Ali" },
+          { t: "Doğruyu seçerim; pratikte nasıl kazanılacağını, nasıl uygulanacağını planlarım.", s: "Amr bin Âs" }
+        ]
+      },
+      // 14
+      {
+        q: "Bir insan ‘Beni haksız yere yargıladınız’ dediğinde, senin için en ikna edici şey hangisi olur?",
+        a: [
+          { t: "Samimiyet: Sözüyle hâlinin tutarlı olması, kalpten konuşması.", s: "Hz. Ebû Bekir" },
+          { t: "Delil: Hakkı ispat eden somut gerçekler ve net açıklama.", s: "Hz. Ömer" },
+          { t: "Hikmet: Olayın arka planını aydınlatan, derin ve sakin muhakeme.", s: "Hz. Ali" },
+          { t: "Zarafet: Kendini savunurken bile incitmemesi, nezaketi ve onuru.", s: "Hz. Osman" }
+        ]
+      },
+      // 15
+      {
+        q: "Bir topluluk birini dışlıyor. Sen o an ne yaparsın?",
+        a: [
+          { t: "Araya girerim; kimsenin yalnız bırakılmasını istemem, kalpleri birleştirmeye çalışırım.", s: "Hz. Ebû Bekir" },
+          { t: "Sebebini sorarım; haksızlık varsa durdururum, hak yerini bulmalı.", s: "Hz. Ömer" },
+          { t: "O kişiyi incitmeden sahiplenirim; sessizce yanında durarak onurunu korurum.", s: "Hz. Osman" },
+          { t: "Ortamı yumuşatmak için mizah ve zekâyla havayı dağıtır, gerilimi sökerim.", s: "Nuayman bin Amr" }
+        ]
+      },
+      // 16
+      {
+        q: "Bir hedefe ulaşmak için önünde iki yol var: biri hızlı ama riskli, diğeri yavaş ama sağlam. Sen hangisini seçersin?",
+        a: [
+          { t: "Sağlam olanı seçerim; insan kaybetmeden ilerlemek benim için daha değerlidir.", s: "Hz. Ebû Bekir" },
+          { t: "Doğru olan hangisiyse onu seçerim; risk de olsa adalet terazisi şaşmamalı.", s: "Hz. Ömer" },
+          { t: "Hızlı olanı seçerim; fırsat kaçmadan hamle yapmak bazen kaderi değiştirir.", s: "Hâlid bin Velîd" },
+          { t: "Şartlara bakarım; hedefe götüren en akıllı yolu seçer, gerektiğinde yön değiştiririm.", s: "Amr bin Âs" }
+        ]
+      },
+      // 17
+      {
+        q: "Bir insan seni kırdı ama sonra pişman oldu. Senin affetme tarzın hangisine benzer?",
+        a: [
+          { t: "Hemen affederim; kalp taşımak istemem, ilişkiyi onarmayı severim.", s: "Hz. Ebû Bekir" },
+          { t: "Affederim ama ders çıkarılsın isterim; aynı şeyin tekrarına izin vermem.", s: "Hz. Ömer" },
+          { t: "Affederim; fakat içimde uzun uzun düşünür, mesele bende anlam olarak yer eder.", s: "Hz. Ali" },
+          { t: "Affederim; kırgınlığı yumuşatmak için ortamı neşeyle toparlarım.", s: "Nuayman bin Amr" }
+        ]
+      },
+      // 18
+      {
+        q: "İnsanların seni en çok ‘ne’ konusunda yanlış anladığını düşünürsün?",
+        a: [
+          { t: "Yumuşaklığımı zayıflık sanırlar; oysa ben insanı korumayı seçerim.", s: "Hz. Ebû Bekir" },
+          { t: "Sertliğimi öfke sanırlar; oysa benim derdim adaletin ayakta kalmasıdır.", s: "Hz. Ömer" },
+          { t: "Suskunluğumu umursamazlık sanırlar; oysa ben derin düşünmeyi severim.", s: "Hz. Osman" },
+          { t: "Mizahımı ciddiyetsizlik sanırlar; oysa ben gerilimi dağıtıp kalpleri korurum.", s: "Nuayman bin Amr" }
+        ]
+      },
+      // 19
+      {
+        q: "Bir dava için fedakârlık isteniyor. Sen en çok hangi fedakârlığı yapmaya yatkınsın?",
+        a: [
+          { t: "Maddi rahatlıktan vazgeçmek; yükü paylaşmak ve kardeşliği büyütmek.", s: "Hz. Ebû Bekir" },
+          { t: "Konforu bırakıp bedel ödemek; gerektiğinde canını ortaya koymak.", s: "Hâlid bin Velîd" },
+          { t: "İtibarı riske atmak; doğruyu savunurken yanlış anlaşılmayı göze almak.", s: "Ebû Zer el-Gıfârî" },
+          { t: "Aileyi, rahat çevreyi bırakmak; zarafetle ama kararlı biçimde hicret etmek.", s: "Cafer bin Ebî Tâlib" }
+        ]
+      },
+      // 20
+      {
+        q: "Bir konuşma yapacaksın ve insanlara dokunmak istiyorsun. Hangi üslup sende daha doğal?",
+        a: [
+          { t: "Sakin, şefkatli ve toparlayıcı; insana ‘yalnız değilsin’ diyecek bir üslup.", s: "Hz. Ebû Bekir" },
+          { t: "Net, disiplinli ve sarsıcı; gereğinde sert ama adil bir üslup.", s: "Hz. Ömer" },
+          { t: "Derin, hikmetli ve düşündürücü; kelimeleri ölçüp biçen bir üslup.", s: "Hz. Ali" },
+          { t: "Kıvrak, akıllı ve ikna edici; dinleyeni bir hamleye taşıyan üslup.", s: "Amr bin Âs" }
+        ]
+      },
+      // 21
+      {
+        q: "Bir problem var ve kimse çözemiyor. Senin çözüm tarzın hangisine daha yakın?",
+        a: [
+          { t: "Önce insanları sakinleştiririm; doğru çözüm için güven ortamı kurarım.", s: "Hz. Ebû Bekir" },
+          { t: "Sistemi kurarım; doğru araçla doğru işi yapar, planı işler hâle getiririm.", s: "Selmân-ı Fârisî" },
+          { t: "Direkt hamle yaparım; çözüm için sahaya iner, işi hızla başlatırım.", s: "Hâlid bin Velîd" },
+          { t: "Zihinsel manevra yaparım; farklı açıdan bakıp beklenmeyen çözümü bulurum.", s: "Amr bin Âs" }
+        ]
+      },
+      // 22
+      {
+        q: "Bir arkadaşın sana ‘Benim içim karışık’ dedi. Sen nasıl yaklaşmayı seçersin?",
+        a: [
+          { t: "Dinlerim; yargılamadan yanında olurum. Çözümden önce kalbi toparlamak isterim.", s: "Hz. Ebû Bekir" },
+          { t: "Düzeni sorarım; ne bozulduysa düzeltmeye odaklanırım. Somut adım isterim.", s: "Hz. Ömer" },
+          { t: "Muhasebeye davet ederim; ‘Bu karışıklığın kökü nerede?’ diye birlikte düşünürüm.", s: "Hz. Ali" },
+          { t: "Hafifletirim; gülümsetecek bir yer bulur, yükün bir kısmını mizahla sökerim.", s: "Nuayman bin Amr" }
+        ]
+      },
+      // 23
+      {
+        q: "Bir topluluk içinde ‘en değerli şey’ sence hangisidir?",
+        a: [
+          { t: "Güven: İnsanların birbirine sırtını yaslayabilmesi.", s: "Hz. Ebû Bekir" },
+          { t: "Adalet: Hakkın yerini bulması, kimsenin ezilmemesi.", s: "Hz. Ömer" },
+          { t: "Haya ve nezaket: İnsanların incitmeden, zarafetle yaşaması.", s: "Hz. Osman" },
+          { t: "Hakikat: Sözün içinin boşalmaması, mananın korunması.", s: "Hz. Ali" }
+        ]
+      },
+      // 24
+      {
+        q: "Bir düzen kuruldu ama insanlar gevşemeye başladı. Senin iç refleksin hangisi?",
+        a: [
+          { t: "İnsanları kırmadan toparlarım; motivasyonu yeniden yükseltirim.", s: "Hz. Ebû Bekir" },
+          { t: "Net uyarırım; disiplin yoksa düzen çöker, bunu hissettiririm.", s: "Hz. Ömer" },
+          { t: "Sistemi iyileştiririm; işleyişi daha sürdürülebilir hâle getiririm.", s: "Selmân-ı Fârisî" },
+          { t: "Gerçeği söylerim; gevşeklik varsa açıkça karşı çıkarım.", s: "Ebû Zer el-Gıfârî" }
+        ]
+      },
+      // 25
+      {
+        q: "Bir fırsat doğdu ama riskli. Senin karar terazinde hangisi ağır basar?",
+        a: [
+          { t: "İnsanların zarar görmemesi; önce güven ve birlik.", s: "Hz. Ebû Bekir" },
+          { t: "Doğru olanın uygulanması; risk varsa da adalet şaşmamalı.", s: "Hz. Ömer" },
+          { t: "Strateji ve zamanlama; doğru anda doğru hamleyle risk yönetilebilir.", s: "Amr bin Âs" },
+          { t: "Cesaret ve atılım; fırsat kaçarsa pişman olurum, hamleyi severim.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 26
+      {
+        q: "Bir davettesin; ortam çok resmî ve soğuk. Senin doğal tavrın hangisi olur?",
+        a: [
+          { t: "Herkesi rahatlatırım; küçük jestlerle yumuşak bir sıcaklık kurarım.", s: "Hz. Ebû Bekir" },
+          { t: "Sükûnetle dururum; gereksiz konuşmam, vakarımı korurum.", s: "Hz. Osman" },
+          { t: "Havayı dağıtacak zekice bir espri bulur, insanların gülümsemesini sağlarım.", s: "Nuayman bin Amr" },
+          { t: "Söz açılırsa derin bir yerden konuşurum; anlamı olan cümle kurmayı severim.", s: "Hz. Ali" }
+        ]
+      },
+      // 27
+      {
+        q: "İnsanlar seni hangi cümleyle daha doğru tarif eder?",
+        a: [
+          { t: "‘O, kalpleri bir arada tutar; zor zamanda insanı ayağa kaldırır.’", s: "Hz. Ebû Bekir" },
+          { t: "‘O, adaleti sever; yanlış karşısında geri durmaz.’", s: "Hz. Ömer" },
+          { t: "‘O, derin düşünür; hakikatin peşini bırakmaz.’", s: "Hz. Ali" },
+          { t: "‘O, zekice hamle yapar; insanları ikna etmeyi bilir.’", s: "Amr bin Âs" }
+        ]
+      },
+      // 28
+      {
+        q: "Bir meselede tek başına kalma ihtimalin var. Bu seni nasıl etkiler?",
+        a: [
+          { t: "Üzer; ama yine de kimseyi kaybetmeden doğruyu söylemenin yolunu ararım.", s: "Hz. Ebû Bekir" },
+          { t: "Korkutmam; doğruysa yalnız kalmak bile razıyım.", s: "Hz. Ömer" },
+          { t: "Yalnız kalmak bana tanıdık; hakikat yolunda insan bazen tek yürür.", s: "Ebû Zer el-Gıfârî" },
+          { t: "Tek başıma da yürürüm; ama plan kurar, şartları doğru okumaya çalışırım.", s: "Selmân-ı Fârisî" }
+        ]
+      },
+      // 29
+      {
+        q: "Bir şey inşa etmek zorundasın: eğitim, proje, düzen, sistem… Senin güçlü tarafın nerede parlar?",
+        a: [
+          { t: "İnsanları bir hedef etrafında birleştirmekte; gönülleri aynı yöne çevirmekte.", s: "Hz. Ebû Bekir" },
+          { t: "Kural ve dengeyi oturtmakta; dağınıklığı düzene sokmakta.", s: "Hz. Ömer" },
+          { t: "Sistemi zekice tasarlamakta; pratik ve uzun ömürlü çözümler üretmekte.", s: "Selmân-ı Fârisî" },
+          { t: "Zor anda öne atılmakta; harekete geçirmekte ve işi sürüklemekte.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 30
+      {
+        q: "Bir hayalin var ve çok büyük. Sen bu hayali taşırken hangi duyguyla yürürsün?",
+        a: [
+          { t: "Vefa ve umutla: Zorlansam da kalbimi kaybetmeden yürümek isterim.", s: "Hz. Ebû Bekir" },
+          { t: "Sorumlulukla: Hayal bile olsa adalet ve doğru çizgiden ayrılmamalıyım.", s: "Hz. Ömer" },
+          { t: "Zarafetle: Bedel ödemek gerekiyorsa da güzelliği ve asaleti korumak isterim.", s: "Cafer bin Ebî Tâlib" },
+          { t: "Akılla: Hayalin yolu stratejidir; doğru hamleler olmadan büyüklük boşa gider.", s: "Amr bin Âs" }
+        ]
+      },
+
+      // =========================
+      // 31–40: KİLİT FİLTRE (senin verdiğin metinle uyumlu)
+      // =========================
+      // 31
+      {
+        q: "Bir kriz sona erdiğinde sen ne yaparsın?",
+        a: [
+          { t: "Herkesin toparlandığından emin olurum; geride kalan var mı diye tek tek bakarım.", s: "Hz. Ebû Bekir" },
+          { t: "Hesap verilecek bir yanlış var mı diye bakarım; tekrar olmasın diye netleştiririm.", s: "Hz. Ömer" },
+          { t: "Bu krizden ne öğrenildiğini düşünürüm; anlamını çıkarıp dersini yerleştiririm.", s: "Hz. Ali" },
+          { t: "Bir sonraki krize hazırlık yaparım; zayıf noktayı bulur, hamleyi şimdiden kurarım.", s: "Amr bin Âs" }
+        ]
+      },
+      // 32
+      {
+        q: "İnsanların seni en çok zorladığı an hangisidir?",
+        a: [
+          { t: "Yanlışı bile bile savunmaları; çıkar için eğip bükmeleri.", s: "Ebû Zer el-Gıfârî" },
+          { t: "Düşünmeden hareket etmeleri; derinlik olmadan karar vermeleri.", s: "Hz. Ali" },
+          { t: "Sürekli ertelemeleri; ‘sonra’ deyip mücadeleyi gevşetmeleri.", s: "Hâlid bin Velîd" },
+          { t: "Duygusal kopukluk yaşamaları; merhameti unutup birbirini tüketmeleri.", s: "Hz. Ebû Bekir" }
+        ]
+      },
+      // 33
+      {
+        q: "Bir davanın zarar görmemesi için hangisinden vazgeçebilirsin?",
+        a: [
+          { t: "Kendi konforumdan; şartlar neyse ona göre yaşarım, yeter ki iş yürüsün.", s: "Selmân-ı Fârisî" },
+          { t: "Kendi itibarından; temsil doğru olsun diye yanlış anlaşılmayı göze alırım.", s: "Cafer bin Ebî Tâlib" },
+          { t: "Kendi hızından; gerekirse yavaşlarım ama hedefe daha sağlam varırım.", s: "Hâlid bin Velîd" },
+          { t: "Kendi duygularımdan; incinsem bile kalp kırmadan yürümeyi seçerim.", s: "Hz. Ebû Bekir" }
+        ]
+      },
+      // 34
+      {
+        q: "Bir ortamda herkes susmuşken sen konuşuyorsan sebebi genelde nedir?",
+        a: [
+          { t: "Yanlışın artık tahammül edilemez hâle gelmesi; susarsam içim çürür.", s: "Ebû Zer el-Gıfârî" },
+          { t: "İnsanların doğruyu duymaya ihtiyacı olması; netlik gerekiyorsa söylerim.", s: "Hz. Ömer" },
+          { t: "Meselenin yanlış anlaşılıyor olması; hakikatin yönünü düzeltmek isterim.", s: "Hz. Ali" },
+          { t: "Konunun yumuşak bir dille toparlanması gerektiği; kalpleri incitmeden sözü kurarım.", s: "Cafer bin Ebî Tâlib" }
+        ]
+      },
+      // 35
+      {
+        q: "Sana göre en zor sorumluluk hangisidir?",
+        a: [
+          { t: "İnsanları bir arada tutmak; kopuşu engelleyip gönülleri aynı çizgide tutmak.", s: "Hz. Ebû Bekir" },
+          { t: "Doğruyu uygulamak; adaletin gereğini acımadan yapmak.", s: "Hz. Ömer" },
+          { t: "Hakikati korumak; mana bozulmasın diye yük taşımak.", s: "Hz. Ali" },
+          { t: "Mücadeleyi sürdürmek; yorulsan da geri çekilmeden devam etmek.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 36
+      {
+        q: "Bir kararın arkasında durmak senin için ne demektir?",
+        a: [
+          { t: "Sonuçları ne olursa olsun vazgeçmemek; geri adım atmam.", s: "Hz. Ömer" },
+          { t: "İnsanlara zarar vermemek için süreci izlemek; kalp kırmadan yürütmek.", s: "Hz. Ebû Bekir" },
+          { t: "Kararın anlamını sürekli tartmak; doğru yerde miyim diye kendimi yoklamak.", s: "Hz. Ali" },
+          { t: "Kararı şartlara göre esnetebilmek; hedef değişmeden yol değişebilir.", s: "Amr bin Âs" }
+        ]
+      },
+      // 37
+      {
+        q: "İnsanların seni ‘zor’ bulmasının asıl sebebi sence nedir?",
+        a: [
+          { t: "Yanlışa tahammül etmemem; ‘olmaz’ dediğim yerde dururum.", s: "Ebû Zer el-Gıfârî" },
+          { t: "Net ve keskin olmam; lafı uzatmadan hükmü söylerim.", s: "Hz. Ömer" },
+          { t: "Çok düşünmem; acele karar veremem, derinlik ararım.", s: "Hz. Ali" },
+          { t: "Sürekli hareket istemem; durmak bana göre değildir.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 38
+      {
+        q: "Bir davada geri planda kalmayı ne zaman kabul edersin?",
+        a: [
+          { t: "İnsanların zarar görmemesi için gerekiyorsa; ben görünmeyeyim ama birlik kalsın.", s: "Hz. Ebû Bekir" },
+          { t: "Temsil daha doğru yapılacaksa; en güzel temsil kimdeyse onun önü açılsın.", s: "Cafer bin Ebî Tâlib" },
+          { t: "Daha iyi bir strateji gerekiyorsa; sahne arkası daha etkiliyse orada dururum.", s: "Amr bin Âs" },
+          { t: "Hakikat sessizliği gerektiriyorsa; bazen susmak konuşmaktan daha ağırdır.", s: "Hz. Ali" }
+        ]
+      },
+      // 39
+      {
+        q: "Sana göre gerçek güç hangisine daha yakındır?",
+        a: [
+          { t: "Kalpleri kazanmak; insanın içini ayağa kaldırmak.", s: "Hz. Ebû Bekir" },
+          { t: "Doğruyu ayakta tutmak; adaleti düşürmemek.", s: "Hz. Ömer" },
+          { t: "Anlamı korumak; mana bozulmasın diye taşımak.", s: "Hz. Ali" },
+          { t: "Engel tanımamak; zorluğu aşarak hedefe varmak.", s: "Hâlid bin Velîd" }
+        ]
+      },
+      // 40
+      {
+        q: "Son soru: Hayat seni en çok hangi yönden sınadı?",
+        a: [
+          { t: "İnsanları kaybetmeden yürümek; doğruda dururken kalpleri de korumak.", s: "Hz. Ebû Bekir" },
+          { t: "Yanlış karşısında yalnız kalmak; doğruyu savunurken bedel ödemek.", s: "Ebû Zer el-Gıfârî" },
+          { t: "Gerçeği ararken yorulmak; hakikate giden yolda zihnin yükünü taşımak.", s: "Hz. Ali" },
+          { t: "Mücadeleyi sürdürmek; yorulsam da geri çekilmemek.", s: "Hâlid bin Velîd" }
+        ]
+      }
+    ];
+
+    // =========================
+    // 3) Sonuç metinleri (10 sahabe – uzun, edebî)
+    // =========================
+    const RESULTS = {
+      "Hz. Ebû Bekir": [
+        "Senin yıldızın: Hz. Ebû Bekir",
+        `Senin yönelişin “kalbi ayakta tutma” istikametinde. Kriz çıktığında önce insanı görüyorsun: korkuyu, dağılmayı, kırılmayı… Sonra içten bir sükûnetle topluyorsun. Senin gücün, sesini yükseltmekten çok güveni yükseltmekte saklı; birinin omzuna el koyup “beraberiz” diyebilmekte…\n\nHz. Ebû Bekir’in çizgisinde, sadakat ve merhamet birbirini zayıflatmaz; bilakis birbirini güçlendirir. Sen de çoğu zaman sert olsan işlerin daha kolay ilerleyeceğini bilirsin; fakat gönül yıkmanın uzun vadede davayı da yıktığını sezersin. Bu yüzden incitmeden yürümeyi seçersin. İnsanın içindeki iyiye seslenirsin.\n\nBu sonuç sende “yumuşak ama sağlam” bir karakter işareti gösteriyor: İnsanları kaybetmeden doğruyu yaşatmak, birliği korurken hedefi de unutmamak. Senin asıl imtihanın; herkesi taşımaya çalışırken kendini tüketmemek. Fakat unutma: Kalp kuranlar, sadece günü değil, geleceği inşa eder.`
+      ],
+      "Hz. Ömer": [
+        "Senin yıldızın: Hz. Ömer",
+        `Senin içinde adalet duygusu bir süs değil; bir omurga. Yanlış gördüğünde “idare edelim” diyemiyorsun. Çünkü sen biliyorsun: Yanlışın üstü örtülürse, yarın doğruyu konuşacak zemin kalmaz. Senin netliğin bazen sertlik gibi görünür; ama aslında bu, hakkı ayakta tutma kararlılığıdır.\n\nHz. Ömer çizgisinde, merhamet adaletin düşmanı değildir; adaletin koruyucusudur. Sen “düzen” istemeyi insanı sıkıştırmak sanmazsın; bilirsin ki düzen, zayıfı korur, hakkı güvenceye alır. Bu yüzden kriz anında önce netlik ararsın: Kimin sorumluluğu ne, hata nerede, telafi nasıl?\n\nBu sonuç; büyük sorumluluk, sağlam sınır ve yüksek vicdan taşımaya yatkın bir karaktere işaret ediyor. Senin imtihanın; doğruda dururken insanların psikolojisini de okumayı ihmal etmemek. Ama sen zaten şunu taşıyorsun: “Hak yerini bulursa kalp de nefes alır.”`
+      ],
+      "Hz. Osman": [
+        "Senin yıldızın: Hz. Osman",
+        `Senin ışığın gürültüyle parlamıyor; sükûnetle parlıyor. İnsanların çoğu “görünür güç” ararken, sen “görünmez incelik” arıyorsun: hayâ, nezaket, gönül kırmamak, ölçülü yaşamak… Senin içinde zarafet bir tercih değil; fıtrat gibi.\n\nHz. Osman çizgisinde, vakar; insanı soğuk yapmaz, insanı derin yapar. Sen bazen geri durursun, çünkü konuşmanın değil sustuğun yerin iz bıraktığını bilirsin. Gösteriş seni yorar; sadelik sana nefes verir. İnsanların incitmeden yaşamasını istersin.\n\nBu sonuç; incelikli bir ruh, yüksek edep ve ‘kalbi temiz tutma’ hassasiyeti gösteriyor. Senin imtihanın; kötü niyetli insanların nezaketi suiistimal etmesine izin vermemek. Zarafetin korunması için bazen sınır da gerekir. Ama sen bunu da öğrenirsin: Nezaket, zayıflık değil; bir asalettir.`
+      ],
+      "Hz. Ali": [
+        "Senin yıldızın: Hz. Ali",
+        `Senin zihnin bir meseleye “tek katman”dan bakmıyor. Olayın özüne, niyetine, anlamına, sonucuna… Hepsine aynı anda dokunmak istiyorsun. Bu yüzden acele karar veremiyorsun; çünkü senin dünyanda bir cümlenin bile hakkı var. Hakikat, kaba bir taş değil; işlenmesi gereken bir cevher.\n\nHz. Ali çizgisinde; cesaret sadece kılıçla değil, fikirle de olur. Sen çoğu zaman sessiz kalırsın; çünkü konuşmadan önce “doğru cümleyi” ararsın. Krizde bile anlamı korumaya çalışırsın: “Bu yaşanan bize ne söylüyor? Nerede yanıldık? Bu olayın bize bıraktığı ders ne?”\n\nBu sonuç; derin muhakeme, güçlü iç disiplin ve hakikat hassasiyeti gösteriyor. Senin imtihanın; fazla düşünmenin yorgunluğunu taşımak ve bazen ‘mükemmel cümleyi’ beklerken ‘gerekli adımı’ geciktirmemek. Ama senin güçlü tarafın şudur: Mana bozulmasın diye yorulmayı göze alırsın.`
+      ],
+      "Cafer bin Ebî Tâlib": [
+        "Senin yıldızın: Cafer bin Ebî Tâlib",
+        `Senin içinde hem zarafet hem cesaret var. Ama senin cesaretin kaba değil; asil. Bedel gerektiğinde geri durmazsın, fakat o bedeli incelikle taşımayı bilirsin. Temsil senin için gösteriş değil; bir emanettir. Bu yüzden ‘davanın yüzü’ olmanın ağırlığını hissedersin.\n\nCafer çizgisinde; fedakârlık, sadece bırakmak değildir. Aynı zamanda en doğruyu en güzel biçimde taşımaktır. Sen bir davanın zarar görmemesi için bazen itibarını, bazen rahatını, bazen de yanlış anlaşılmayı göze alırsın. Çünkü sen “hakikat doğru dille temsil edilmezse, kalbe ulaşamaz” diye düşünürsün.\n\nBu sonuç; stratejik zeka, yüksek onur ve temsil kabiliyeti gösteriyor. Senin imtihanın; güzel temsil etme çabanın seni yorması ve bazen ‘herkesi ikna etmeliyim’ yükünü sırtlanman. Unutma: Senin zarafetin, sadece seni değil, çevreni de yükseltir.`
+      ],
+      "Amr bin Âs": [
+        "Senin yıldızın: Amr bin Âs",
+        `Sen bir problemi sadece “problem” olarak görmezsin; onun içindeki fırsatı, riskleri, hamle alanlarını da görürsün. Zihnin pratik çalışır: “Bu iş nasıl yürür? Hangi adım işe yarar? Şartlara göre nasıl pozisyon alırım?” Senin gücün, karmaşayı bir plan hâline getirebilmekte.\n\nAmr çizgisinde; strateji kurnazlık değildir. Strateji, hedefi koruyarak yolu akıllıca seçmektir. Sen bazen şartlara göre dili yumuşatırsın, bazen yön değiştirirsin; çünkü sen hedefin sabit kalmasını önemsersin. Kriz sonrası “bir sonraki krize hazırlık” fikri sende güçlüdür.\n\nBu sonuç; yüksek zeka, hızlı muhakeme ve ikna kabiliyeti gösteriyor. Senin imtihanın; stratejinin kalbi sertleştirmesine izin vermemek ve her hamlede niyeti temiz tutmak. Akıl, kalple birleştiğinde senin yıldızın daha da parlar.`
+      ],
+      "Hâlid bin Velîd": [
+        "Senin yıldızın: Hâlid bin Velîd",
+        `Senin ruhun “hareket” sever. Beklemek seni yorar; kararsızlık seni kızdırır. Çünkü sen bilirsin: Zor zamanlarda insanların bir şeye tutunması gerekir. O tutunma bazen bir cümle değil; bir hamledir. Sen o hamleyi yapan taraftasın.\n\nHâlid çizgisinde; cesaret sadece korkusuzluk değil, sorumluluk almaktır. Sen riskten kaçmazsın; ama riskin hesabını da yaparsın. Mücadele senin için romantik bir fikir değil; yaşayan bir gerçekliktir. ‘Devam etmek’ sende bir karakter özelliği.\n\nBu sonuç; yüksek enerji, atılım gücü ve yılmaz bir ruh gösteriyor. Senin imtihanın; hızın bazen inceliği kaçırması ve yorgunluğu fark etmeden ileri gitmen. Fakat sen şunu taşıyorsun: Zor günde öne çıkan insanlar, bir topluluğun kaderini değiştirir.`
+      ],
+      "Selmân-ı Fârisî": [
+        "Senin yıldızın: Selmân-ı Fârisî",
+        `Senin gücün “sistem” kurmakta. İnsanların çoğu sadece anı yönetirken, sen geleceği düşünürsün: “Bu iş nasıl sürer? Neresi açık verir? Nasıl daha sağlam olur?” Senin aklın sadece fikir üretmez; çözüm üretir. Bu yüzden kriz anında bile plan kurabilirsin.\n\nSelmân çizgisinde; bilgelik sakin bir güçtür. Sen konforunu bile bırakabilirsin, yeter ki iş yürüsün ve yol sağlam kalsın. İnşa etmeyi seversin: düzen, eğitim, proje, savunma, yöntem… Senin karakterinde ‘emek’ çok görünür.\n\nBu sonuç; pratik zeka, stratejik planlama ve derin sadakat gösteriyor. Senin imtihanın; bazen duygusal dünyayı ikinci plana atmak ve “işin yürümesi” uğruna kendini zorlamak. Unutma: Sistem kuranlar görünmez kahramandır; ama onların izi en uzun sürer.`
+      ],
+      "Ebû Zer el-Gıfârî": [
+        "Senin yıldızın: Ebû Zer el-Gıfârî",
+        `Sen gerçeği seviyorsun; ama “süslenmiş gerçeği” değil. Gösteriş, çıkar, ikiyüzlülük… Bunlar sende içten bir rahatsızlık doğurur. Senin vicdanın yüksek seslidir. Haksızlık karşısında yalnız kalmayı göze alırsın; çünkü senin için doğru, kalabalıktan daha değerlidir.\n\nEbû Zer çizgisinde; insanın içi temiz kalmalı. Sen ‘normalleşen yanlış’la yaşayamazsın. Bu yüzden bazen “zor” bulunursun. Oysa senin zorluğun, dünyayı değil, kalbi temiz tutma isteğindendir.\n\nBu sonuç; yüksek ahlak hassasiyeti, güçlü bir adalet duygusu ve taviz vermeyen bir ruh gösteriyor. Senin imtihanın; haklıyken bile insanları kaybetmemek ve öfkenin hakikati gölgelemesine izin vermemek. Ama sen şunu taşıyorsun: Bazı insanlar doğruyu sırf varlıklarıyla hatırlatır.`
+      ],
+      "Nuayman bin Amr": [
+        "Senin yıldızın: Nuayman bin Amr",
+        `Senin zekânın bir rengi var: neşeli. Sen kriz anında bile gerilimin insanı zehirlediğini sezersin. Bu yüzden bir cümleyle havayı değiştirirsin, bir espriyle kalpleri korursun. Senin mizahın kaçış değil; tam tersine, insanı hayata bağlayan bir onarımdır.\n\nNuayman çizgisinde; şaka, kalpsiz değildir. Sen insanları sever, onların yükünü hafifletmeyi bilirsin. Bazen ciddiyetin öldürdüğü yerlerde sen hayat üflersin. İnsanlar senin yanında daha kolay nefes alır.\n\nBu sonuç; sıcak iletişim, sosyal zekâ ve ‘hayatı hafifletme’ kabiliyeti gösteriyor. Senin imtihanın; bazı insanların mizahı yanlış anlaması ve seni ciddiyetsiz sanması. Oysa sen biliyorsun: Kalbi kırmadan doğruda yürümek de bir hikmettir.`
+      ]
+    };
+
+    // =========================
+    // 4) UI mantığı
+    // =========================
+    const qCounter = document.getElementById("qCounter");
+    const progress = document.getElementById("progress");
+    const questionText = document.getElementById("questionText");
+    const optionsBox = document.getElementById("options");
+    const nextBtn = document.getElementById("nextBtn");
+    const card = document.getElementById("card");
+
+    let idx = 0;
+    let selectedIndex = null; // 0..3
+
+    function setProgress(){
+      const pct = Math.round(((idx) / QUESTIONS.length) * 100);
+      progress.style.width = pct + "%";
+      qCounter.textContent = `Soru ${idx + 1} / ${QUESTIONS.length}`;
+    }
+
+    function renderQuestion(){
+      selectedIndex = null;
+      nextBtn.disabled = true;
+
+      const item = QUESTIONS[idx];
+      setProgress();
+      questionText.textContent = item.q;
+
+      optionsBox.innerHTML = "";
+      const labels = ["A","B","C","D"];
+
+      item.a.forEach((opt, i) => {
+        const div = document.createElement("div");
+        div.className = "opt";
+        div.setAttribute("role","button");
+        div.setAttribute("tabindex","0");
+
+        div.innerHTML = `
+          <div class="badge">${labels[i]}</div>
+          <div class="optText">${opt.t}</div>
+        `;
+
+        function choose(){
+          // seçimi güncelle
+          [...optionsBox.querySelectorAll(".opt")].forEach(el => el.classList.remove("selected"));
+          div.classList.add("selected");
+          selectedIndex = i;
+          nextBtn.disabled = false;
+        }
+
+        div.addEventListener("click", choose);
+        div.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            choose();
+          }
+        });
+
+        optionsBox.appendChild(div);
+      });
+
+      // Buton metni
+      nextBtn.textContent = (idx === QUESTIONS.length - 1) ? "Sonucu Gör" : "Devam";
+    }
+
+    function applyAnswer(){
+      const item = QUESTIONS[idx];
+      const chosen = item.a[selectedIndex];
+
+      // Bu soruda yer alan sahabeler (4'ü)
+      const involved = item.a.map(x => x.s);
+
+      // total +1: sadece involved sahabelere
+      involved.forEach(name => {
+        stats[name].total += 1;
+        if(idx >= 30){ // 31–40 kilit
+          stats[name].lockTotal += 1;
+        }
+      });
+
+      // score +1: sadece seçilen sahabeye
+      stats[chosen.s].score += 1;
+      if(idx >= 30){
+        stats[chosen.s].lockScore += 1;
+      }
+    }
+
+    function computeWinner(){
+      // oran = score/total
+      const rows = SAHABE.map(name => {
+        const st = stats[name];
+        const ratio = st.total > 0 ? (st.score / st.total) : 0;
+        const lockRatio = st.lockTotal > 0 ? (st.lockScore / st.lockTotal) : 0;
+        return { name, ...st, ratio, lockRatio };
+      });
+
+      // En yüksek oran
+      rows.sort((a,b) => {
+        if(b.ratio !== a.ratio) return b.ratio - a.ratio;
+        // eşitlikte kilit sorulara öncelik
+        if(b.lockRatio !== a.lockRatio) return b.lockRatio - a.lockRatio;
+        if(b.lockScore !== a.lockScore) return b.lockScore - a.lockScore;
+        return SAHABE.indexOf(a.name) - SAHABE.indexOf(b.name);
+      });
+
+      return { winner: rows[0], ranking: rows };
+    }
+
+    function showResult(){
+      progress.style.width = "100%";
+
+      const { winner, ranking } = computeWinner();
+      const res = RESULTS[winner.name];
+
+      const top3 = ranking.slice(0,3);
+
+      card.innerHTML = `
+        <div class="topbar">
+          <div class="qmeta"><span>Test tamamlandı</span></div>
+          <div class="bar"><div style="width:100%"></div></div>
+        </div>
+
+        <div class="resultTitle">${res[0]}</div>
+        <div class="resultName">${winner.name}</div>
+        <div class="resultBody">${res[1]}</div>
+
+        <div class="mini">
+          <h3>Yakın sonuçlar (oranlı değerlendirme)</h3>
+          <div class="rank">
+            ${top3.map(r => {
+              const pct = r.total ? Math.round((r.score / r.total) * 100) : 0;
+              const lockPct = r.lockTotal ? Math.round((r.lockScore / r.lockTotal) * 100) : 0;
+              return `
+                <div class="rankItem">
+                  <div>${r.name}</div>
+                  <div class="pill">${pct}% (Kilit: ${lockPct}%)</div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btnGhost" id="restartBtn">Yeniden Başla</button>
+          <button class="btn" id="copyBtn">Sonucu Kopyala</button>
+        </div>
+      `;
+
+      document.getElementById("restartBtn").addEventListener("click", () => location.reload());
+      document.getElementById("copyBtn").addEventListener("click", async () => {
+        const text =
+`SENİN YILDIZIN KİM? — Sonuç: ${winner.name}
+
+${res[1]}`;
+        try{
+          await navigator.clipboard.writeText(text);
+          document.getElementById("copyBtn").textContent = "Kopyalandı ✓";
+          setTimeout(()=> document.getElementById("copyBtn").textContent = "Sonucu Kopyala", 1200);
+        }catch{
+          alert("Kopyalama desteklenmiyor. Sonucu manuel seçip kopyalayabilirsin.");
+        }
+      });
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if(selectedIndex === null) return;
+      applyAnswer();
+
+      if(idx === QUESTIONS.length - 1){
+        showResult();
+      }else{
+        idx += 1;
+        renderQuestion();
+      }
+    });
+
+    // İlk açılış
+    renderQuestion();
+  </script>
 </body>
 </html>
